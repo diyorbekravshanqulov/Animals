@@ -19,16 +19,16 @@ export class AnimalsTypeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.animalsTypeService.findOne(+id);
+    return this.animalsTypeService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAnimalsTypeDto: UpdateAnimalsTypeDto) {
-    return this.animalsTypeService.update(+id, updateAnimalsTypeDto);
+    return this.animalsTypeService.update(id, updateAnimalsTypeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.animalsTypeService.remove(+id);
+    return this.animalsTypeService.remove(id);
   }
 }

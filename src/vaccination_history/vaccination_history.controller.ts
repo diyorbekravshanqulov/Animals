@@ -19,16 +19,16 @@ export class VaccinationHistoryController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.vaccinationHistoryService.findOne(+id);
+    return this.vaccinationHistoryService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVaccinationHistoryDto: UpdateVaccinationHistoryDto) {
-    return this.vaccinationHistoryService.update(+id, updateVaccinationHistoryDto);
+    return this.vaccinationHistoryService.update(id, updateVaccinationHistoryDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.vaccinationHistoryService.remove(+id);
+    return this.vaccinationHistoryService.remove(id);
   }
 }

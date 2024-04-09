@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVaccineDto } from './dto/create-vaccine.dto';
 import { UpdateVaccineDto } from './dto/update-vaccine.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Vaccine } from './model/vaccine.model';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class VaccineService {
-  create(createVaccineDto: CreateVaccineDto) {
-    return 'This action adds a new vaccine';
+  constructor(
+    @InjectModel(Vaccine.name) private vaccineModel: Model<Vaccine>,
+  ) {}
+
+  async create(createVaccineDto: CreateVaccineDto) {
+    return this.vaccineModel.create(createVaccineDto);
   }
 
-  findAll() {
-    return `This action returns all vaccine`;
+  async findAll() {
+    return this.vaccineModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vaccine`;
+  async findOne(id: string) {
+    return this.vaccineModel.findById(id);
   }
 
-  update(id: number, updateVaccineDto: UpdateVaccineDto) {
-    return `This action updates a #${id} vaccine`;
+  async update(id: string, updateVaccineDto: UpdateVaccineDto) {
+    return this.vaccineModel.findByIdAndUpdate(id, updateVaccineDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vaccine`;
+  async remove(id: string) {
+    return this.vaccineModel.deleteOne({ _id: id });
   }
 }

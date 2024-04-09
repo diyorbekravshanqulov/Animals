@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnimalsTypeDto } from './dto/create-animals_type.dto';
 import { UpdateAnimalsTypeDto } from './dto/update-animals_type.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Animal_type } from './model/animals_type.model';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AnimalsTypeService {
-  create(createAnimalsTypeDto: CreateAnimalsTypeDto) {
-    return 'This action adds a new animalsType';
+  constructor(
+    @InjectModel(Animal_type.name) private animalTypeModel: Model<Animal_type>,
+  ) {}
+
+  async create(createAnimalsTypeDto: CreateAnimalsTypeDto) {
+    return this.animalTypeModel.create(createAnimalsTypeDto);
   }
 
-  findAll() {
-    return `This action returns all animalsType`;
+  async findAll() {
+    return this.animalTypeModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} animalsType`;
+  async findOne(id: string) {
+    return this.animalTypeModel.findById(id);
   }
 
-  update(id: number, updateAnimalsTypeDto: UpdateAnimalsTypeDto) {
-    return `This action updates a #${id} animalsType`;
+  async update(id: string, updateAnimalsTypeDto: UpdateAnimalsTypeDto) {
+    return this.animalTypeModel.findByIdAndUpdate(id, updateAnimalsTypeDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} animalsType`;
+  async remove(id: string) {
+    return this.animalTypeModel.deleteOne({ _id: id });
   }
 }
