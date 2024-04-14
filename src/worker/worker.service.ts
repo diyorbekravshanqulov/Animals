@@ -1,4 +1,8 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { CreateWorkerDto } from './dto/create-worker.dto';
 import { UpdateWorkerDto } from './dto/update-worker.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -213,15 +217,28 @@ export class WorkerService {
     return this.workerModel.find().populate('speciallity_id');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} worker`;
+  findOne(id: string) {
+    return this.workerModel.findById(id);
   }
 
-  update(id: number, updateWorkerDto: UpdateWorkerDto) {
-    return `This action updates a #${id} worker`;
+  update(id: string, updateWorkerDto: UpdateWorkerDto) {
+    return this.workerModel.findByIdAndUpdate(id, updateWorkerDto, {
+      new: true,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} worker`;
+  async remove(id: string) {
+    try {
+      const deletedWorker = await this.workerModel.findByIdAndDelete(id);
+      if (!deletedWorker) {
+        throw new BadRequestException('Worker not found');
+      }
+      return {
+        message: 'Worker deleted successfully',
+        worker: deletedWorker,
+      };
+    } catch (error) {
+      throw new BadRequestException('Failed to delete worker');
+    }
   }
 }
