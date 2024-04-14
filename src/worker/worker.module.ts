@@ -3,7 +3,11 @@ import { WorkerService } from './worker.service';
 import { WorkerController } from './worker.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Worker, WorkerSchema } from './schemas/worker.schema';
-import { Speciallity, SpeciallitySchema } from '../speciallity/schemas/speciallity.schema';
+import {
+  Speciallity,
+  SpeciallitySchema,
+} from '../speciallity/schemas/speciallity.schema';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -17,6 +21,7 @@ import { Speciallity, SpeciallitySchema } from '../speciallity/schemas/specialli
         schema: SpeciallitySchema,
       },
     ]),
+    JwtModule.register({}),
   ],
   controllers: [WorkerController],
   providers: [WorkerService],

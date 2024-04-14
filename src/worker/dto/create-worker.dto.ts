@@ -7,6 +7,7 @@ export class CreateWorkerDto {
   phone_number: string;
   username: string;
   password: string;
+  comfirm_password: string;
   worker_schedule: string[];
   speciallity_id: mongoose.Schema.Types.ObjectId;
 }

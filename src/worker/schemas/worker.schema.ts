@@ -31,7 +31,7 @@ export class Worker {
   speciallity_id: Speciallity;
 
   @Prop()
-  token: string;
+  hashed_refresh_token: string;
 }
 
 export const WorkerSchema = SchemaFactory.createForClass(Worker);
