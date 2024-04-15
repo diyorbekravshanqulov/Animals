@@ -16,7 +16,7 @@ export class SpeciallityService {
   }
 
   findAll() {
-    return `This action returns all speciallity`;
+    return this.speciallityModel.find().populate('workers');
   }
 
   findOne(id: number) {

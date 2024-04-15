@@ -210,6 +210,9 @@ export class WorkerService {
       throw new BadRequestException('Not found Speciallity');
     }
     const worker = await this.workerModel.create(createWorkerDto);
+    spec.workers.push(worker);
+
+    await spec.save();
 
     return worker;
   }
