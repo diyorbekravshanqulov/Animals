@@ -57,14 +57,15 @@ export class AdminService {
       if (createAdminDto.password !== createAdminDto.confirm_password) {
         throw new BadRequestException('Password does not match');
       }
-
+      
       // Hash the password
       const hashedPassword = await bcrypt.hash(createAdminDto.password, 7);
-
+      
       // Generate activation link
       const activationLink = uuidv4();
-
+      
       // Create a new admin with hashed password and activation link
+      console.log("name");
       const newAdmin = await this.adminModel.create({
         ...createAdminDto,
         hashedPassword,
