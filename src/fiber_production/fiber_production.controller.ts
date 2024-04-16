@@ -19,16 +19,16 @@ export class FiberProductionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.fiberProductionService.findOne(+id);
+    return this.fiberProductionService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFiberProductionDto: UpdateFiberProductionDto) {
-    return this.fiberProductionService.update(+id, updateFiberProductionDto);
+    return this.fiberProductionService.update(id, updateFiberProductionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.fiberProductionService.remove(+id);
+    return this.fiberProductionService.remove(id);
   }
 }

@@ -19,16 +19,16 @@ export class RecordsOfFeedingController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.recordsOfFeedingService.findOne(+id);
+    return this.recordsOfFeedingService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRecordsOfFeedingDto: UpdateRecordsOfFeedingDto) {
-    return this.recordsOfFeedingService.update(+id, updateRecordsOfFeedingDto);
+    return this.recordsOfFeedingService.update(id, updateRecordsOfFeedingDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.recordsOfFeedingService.remove(+id);
+    return this.recordsOfFeedingService.remove(id);
   }
 }
