@@ -14,6 +14,8 @@ import { FiberProductionModule } from './fiber_production/fiber_production.modul
 import { MilkProductionModule } from './milk_production/milk_production.module';
 import { InfoModule } from './info/info.module';
 import { BlocksModule } from './blocks/blocks.module';
+import { FeedingModule } from './feeding/feeding.module';
+import { RecordOfIllnessModule } from './record_of_illness/record_of_illness.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { BlocksModule } from './blocks/blocks.module';
     MilkProductionModule,
     InfoModule,
     BlocksModule,
+    FeedingModule,
+    RecordOfIllnessModule,
   ],
   controllers: [],
   providers: [],
